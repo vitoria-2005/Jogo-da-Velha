@@ -1,19 +1,19 @@
 /*Jogo da velha (3X3 OU 4X4);
 a) Apenas um tabuleiro 3x3 (ou 5x5)
-b) Caso n„o exista o segundo jogador, o computador deve assumir a posiÁ„o do
+b) Caso n√£o exista o segundo jogador, o computador deve assumir a posi√ß√£o do
 oponente;
 c) Ranking em arquivo;
-d) Deve haver menu com opÁıes de Jogar, Ver Ranking, CrÈditos e Sair;
-e) Utilize matriz com alocaÁ„o din‚mica;    
-f) Utilize struct para armazenar dados em memÛria e depois transferir para arquivo;
+d) Deve haver menu com op√ß√µes de Jogar, Ver Ranking, Cr√©ditos e Sair;
+e) Utilize matriz com aloca√ß√£o din√¢mica;    
+f) Utilize struct para armazenar dados em mem√≥ria e depois transferir para arquivo;
 g) Controle de jogada deve ser feito utilizando entrada de dados pelo teclado
-contendo informaÁ„o da posiÁ„o e usu·rio;
+contendo informa√ß√£o da posi√ß√£o e usu√°rio;
 */
 
-#include <stdio.h>  //padr„o 
-#include <stdlib.h> //Necess·rio para alocaÁ„o din‚mica
-#include <locale.h> //Necess·rio para acetuaÁ„o correta
-#include <string.h> //Necess·rio na parte de jogar contra o computador
+#include <stdio.h>  //padr√£o 
+#include <stdlib.h> //Necess√°rio para aloca√ß√£o din√¢mica
+#include <locale.h> //Necess√°rio para acentua√ß√£o correta
+#include <string.h> //Necess√°rio na parte de jogar contra o computador
 
 // Estrutura para guardar os dados dos jogadores
 typedef struct dados {
@@ -21,13 +21,13 @@ typedef struct dados {
     int vitorias;
 } t_dados;
 
-// Vari·veis globais necess·rias
+// Vari√°veis globais necess√°rias
 t_dados jogador1, jogador2; // Importante para exibir o ranking
-char **jogo;               // Matriz din‚mica
-int tamanho = 3;           // Tamanho padr„o do tabuleiro
+char **jogo;               // Matriz din√¢mica
+int tamanho = 3;           // Tamanho padr√£o do tabuleiro
 int l, c;
 
-// FunÁ„o para criar a matriz din‚mica 
+// Fun√ß√£o para criar a matriz din√¢mica 
 void criarMatriz() {
     jogo = (char **)malloc(tamanho * sizeof(char *));
     for (int i = 0; i < tamanho; i++) {
@@ -35,7 +35,7 @@ void criarMatriz() {
     }
 }
 
-// FunÁ„o para liberar a memÛria alocada para a matriz 
+// Fun√ß√£o para liberar a mem√≥ria alocada para a matriz 
 void liberarMatriz() {
     for (int i = 0; i < tamanho; i++) {
         free(jogo[i]);
@@ -43,8 +43,8 @@ void liberarMatriz() {
     free(jogo);
 }
 
-/* Procedimento para inicializar as posiÁıes no jogo,
-importante para a verificaÁ„o de vencedor */
+/* Procedimento para inicializar as posi√ß√µes no jogo,
+importante para a verifica√ß√£o de vencedor */
 void inicializar() {
     for (l = 0; l < tamanho; l++) {
         for (c = 0; c < tamanho; c++)
@@ -53,7 +53,7 @@ void inicializar() {
 }
 
 /* Procedimento que imprime o tabuleiro na tela,
-e os n˙meros das posiÁıes*/
+e os n√∫meros das posi√ß√µes*/
 void imprimir() {
     printf("\n\t");
     for (c = 0; c < tamanho; c++) {
@@ -80,7 +80,7 @@ void imprimir() {
     }
 }
 
-// FunÁ„o para verificar se h· vencedor 
+// Fun√ß√£o para verificar se h√° vencedor 
 int verificarVencedor() {
     int i, j;
 
@@ -112,7 +112,7 @@ int verificarVencedor() {
     return 0;
 }
 
-// FunÁ„o para verificar se uma jogada È v·lida 
+// Fun√ß√£o para verificar se uma jogada √© v√°lida 
 int ehValida(int l, int c) {
     if (l >= 0 && l < tamanho && c >= 0 && c < tamanho && jogo[l][c] == ' ')
         return 1;
@@ -120,7 +120,7 @@ int ehValida(int l, int c) {
         return 0;
 }
 
-// Procedimento para ler as jogadas dos jogadores e guard·-las
+// Procedimento para ler as jogadas dos jogadores e guard√°-las
 void lerJogadas(char j) {
     int linha, coluna;
 
@@ -128,7 +128,7 @@ void lerJogadas(char j) {
     scanf("%d%d", &linha, &coluna);
 
     while (ehValida(linha, coluna) == 0) {
-        printf("Jogada inv·lida! Digite outra linha e coluna: ");
+        printf("Jogada inv√°lida! Digite outra linha e coluna: ");
         scanf("%d%d", &linha, &coluna);
     }
     jogo[linha][coluna] = j;
@@ -138,7 +138,7 @@ void lerJogadas(char j) {
 void jogadaComputador(char b) {
     int i, k;
 	
-	printf("\nComputador est· jogando...\n");
+	printf("\nComputador est√° jogando...\n");
 	for(i = 0; i < 3; i++){
 		for(k = 0; k < 3; k++){
 			if(jogo[i][k] == ' '){
@@ -152,18 +152,18 @@ void jogadaComputador(char b) {
 // Procedimento para exibir ranking
 void exibirRanking(){
     printf("\n");
-    printf("1. %s - %d vitÛria(s)\n", jogador1.nome, jogador1.vitorias);
-    printf("2. %s - %d vitÛria(s)\n", jogador2.nome, jogador2.vitorias);
+    printf("1. %s - %d vit√≥ria(s)\n", jogador1.nome, jogador1.vitorias);
+    printf("2. %s - %d vit√≥ria(s)\n", jogador2.nome, jogador2.vitorias);
     printf("\n");
 }
 
 /*procedimento para jogar;
-dentro dessa funÁ„o s„o chamadas a maioria das outras;
-porque basicamente as outras s„o partes separadas que 
-juntando da forma certa nessa funÁ„o formam o jogo;
+dentro dessa fun√ß√£o s√£o chamadas a maioria das outras;
+porque basicamente as outras s√£o partes separadas que 
+juntando da forma certa nessa fun√ß√£o formam o jogo;
 */
 void jogar (int contraComputador) {
-    char jogarNovamente; //necess·rio para jogar mais de uma vez ou sair
+    char jogarNovamente; //necess√°rio para jogar mais de uma vez ou sair
 
     printf("Digite o nome do jogador 1: ");       //coleta e armazena o nome dos joadores
     scanf(" %[^\n]", jogador1.nome);
@@ -177,26 +177,26 @@ void jogar (int contraComputador) {
     }
 
     do {
-        inicializar();  //chama a funÁ„o inicializar
-        int turno = 0;  //necess·rio para troca de turno
+        inicializar();  //chama a fun√ß√£o inicializar
+        int turno = 0;  //necess√°rio para troca de turno
 
         while (1) {
             imprimir(); //imprime o tabuleiro
             
             //troca o turno
             if (turno % 2 == 0) {
-                printf("\n%s, È sua vez (X)! ", jogador1.nome);
+                printf("\n%s, √© sua vez (X)! ", jogador1.nome);
                 lerJogadas('X');     //registra a jodada de X
             } else {
                 if (contraComputador) {
                     jogadaComputador('O');
                 } else {
-                    printf("\n%s, È sua vez (O)! ", jogador2.nome);
+                    printf("\n%s, √© sua vez (O)! ", jogador2.nome);
                     lerJogadas('O'); //registra a jodada de O
                 }
             }
             
-            //verifica o vencedor  e guarda as vitÛrias
+            //verifica o vencedor  e guarda as vit√≥rias
             if (verificarVencedor()) {
                 imprimir();
                 if (turno % 2 == 0) {
@@ -208,7 +208,7 @@ void jogar (int contraComputador) {
                 }
                 break;
             }
-            //caso ninguÈm ganhe, d· empate
+            //caso ningu√©m ganhe, d√° empate
             if (turno == (tamanho * tamanho) - 1) {
                 imprimir();
                 printf("Empate! O jogo terminou sem vencedor.\n");
@@ -217,7 +217,7 @@ void jogar (int contraComputador) {
             turno++;
         }
         /*pergunta se quer continuar jogando,
-    	se n„o quiser volta para o menu inicial*/
+    	se n√£o quiser volta para o menu inicial*/
         printf("\nDeseja jogar novamente? (s/n): ");
         scanf(" %c", &jogarNovamente);
     } while (jogarNovamente == 's' || jogarNovamente == 'S');
@@ -226,7 +226,7 @@ void jogar (int contraComputador) {
 int main() {
     setlocale(0, "portuguese");
     
-    //vari·vel importante para a criaÁ„o do menu
+    //vari√°vel importante para a cria√ß√£o do menu
     int opcao;
     
     //loop do menu
@@ -235,12 +235,12 @@ int main() {
         printf("1. Jogar (2 jogadores)\n");
         printf("2. Jogar com o computador\n");
         printf("3. Ranking\n");
-        printf("4. CrÈditos\n");
+        printf("4. Cr√©ditos\n");
         printf("5. Sair\n");
-        printf("\n\nEscolha uma opÁ„o (n˙mero): ");
+        printf("\n\nEscolha uma op√ß√£o (n√∫mero): ");
         scanf("%d", &opcao);
         
-        //swith para chamar as funÁıes void, mostrar os crÈditos e a mensagem de saida
+        //swith para chamar as fun√ß√µes void, mostrar os cr√©ditos e a mensagem de saida
         switch (opcao) {
             case 1:
                 criarMatriz();
@@ -256,13 +256,13 @@ int main() {
                 exibirRanking();
                 break;
             case 4:
-                printf("\nCrÈditos:\n\nEmmanuel Lacerda\nErika Regina\nIsadora Garcez\nVitÛria GonÁalves\n");
+                printf("\nCr√©ditos:\n\nEmmanuel Lacerda\nErika Regina\nIsadora Garcez\nVit√≥ria Gon√ßalves\n");
                 break;
             case 5:
-                printf("\nVocÍ est· saindo, volte logo!");
+                printf("\nVoc√™ est√° saindo, volte logo!");
                 break;
             default:
-                printf("\nOpÁ„o inv·lida! Tente novamente.");
+                printf("\nOp√ß√£o inv√°lida! Tente novamente.");
                 break;
         }
     } while (opcao != 5); 

@@ -10,8 +10,8 @@ g) Controle de jogada deve ser feito utilizando entrada de dados pelo teclado
 contendo informação da posição e usuário;
 */
 
-#include <stdio.h>  //padrão 
-#include <stdlib.h> //Necessário para alocação dinâmica
+#include <stdio.h>  //Padrão para entrada e saída de dados
+#include <stdlib.h> //Necessário por causa do malloc e o free
 #include <locale.h> //Necessário para acentuação correta
 #include <string.h> //Necessário na parte de jogar contra o computador
 
@@ -22,7 +22,7 @@ typedef struct dados {
 } t_dados;
 
 // Variáveis globais necessárias
-t_dados jogador1, jogador2; // Importante para exibir o ranking
+t_dados jogador1, jogador2; // Necessário para guardar os dados dos jogadores e exibir o ranking
 char **jogo;               // Matriz dinâmica
 int tamanho = 3;           // Tamanho padrão do tabuleiro
 int l, c;
